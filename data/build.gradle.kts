@@ -1,5 +1,5 @@
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     kotlin("android")
     kotlin("kapt")
     id("dagger.hilt.android.plugin")
@@ -25,7 +25,7 @@ android {
         release {
             isMinifyEnabled = false
             buildConfigField("String", "BASE_URL", "\"${Versions.BASE_URL}\"")
-            
+
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -43,12 +43,13 @@ android {
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.8.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.9.0")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+//    implementation("androidx.core:core-ktx:1.8.0")
+//    implementation("androidx.appcompat:appcompat:1.6.1")
+//    implementation("com.google.android.material:material:1.9.0")
+
+    testImplementation("junit:junit:${Versions.Test.JUNIT}")
+    androidTestImplementation("androidx.test.ext:junit:${Versions.Test.EXT_JUNIT}")
+    androidTestImplementation("androidx.test.espresso:espresso-core:${Versions.Test.ESPRESSO}")
 
     implementation("com.squareup.retrofit2:retrofit:${Versions.Network.RETROFIT}")
     implementation("com.squareup.okhttp3:okhttp:${Versions.Network.OKHTTP}")
@@ -58,7 +59,11 @@ dependencies {
 
     implementation("com.google.dagger:hilt-android:${Versions.Hilt.HILT_CORE}")
     kapt("com.google.dagger:hilt-android-compiler:${Versions.Hilt.HILT_CORE}")
-    kapt("androidx.hilt:hilt-compiler:${Versions.Hilt.HILT_COMPILER}")
 
     implementation(project(":domain"))
+}
+
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
 }

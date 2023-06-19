@@ -14,5 +14,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "NSSF Weather"
 include(":app")
-include(":domain")
 include(":data")
+include(":domain")

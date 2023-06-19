@@ -3,6 +3,7 @@ plugins {
     kotlin("android")
     kotlin("kapt")
     id("kotlin-parcelize")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -40,13 +41,30 @@ android {
 
 dependencies {
 
+    implementation(project(":domain"))
+    implementation(project(":data"))
+
     implementation("androidx.core:core-ktx:1.8.0")
     implementation ("androidx.appcompat:appcompat:1.6.1")
-    implementation ("com.google.android.material:material:1.5.0")
-    implementation ("androidx.constraintlayout:constraintlayout:2.1.3")
-    testImplementation( "junit:junit:4.13.2")
-    androidTestImplementation ("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation ("androidx.test.espresso:espresso-core:3.5.1")
+    implementation ("com.google.android.material:material:1.9.0")
+    implementation ("androidx.constraintlayout:constraintlayout:2.1.4")
 
-    implementation(project(":domain"))
+    implementation("androidx.fragment:fragment-ktx:${Versions.AndroidX.FRAGMENT_KTX}")
+    implementation("androidx.activity:activity-ktx:${Versions.AndroidX.ACTIVITY_KTX}")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.AndroidX.LIFECYCLE_KTX}")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:${Versions.AndroidX.LIFECYCLE_KTX}")
+
+//    testImplementation("junit:junit:${Versions.Test.JUNIT}")
+//    androidTestImplementation("androidx.test.ext:junit:${Versions.Test.EXT_JUNIT}")
+//    androidTestImplementation("androidx.test.espresso:espresso-core:${Versions.Test.ESPRESSO}")
+
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
+
+    implementation("com.google.dagger:hilt-android:${Versions.Hilt.HILT_CORE}")
+    kapt("com.google.dagger:hilt-android-compiler:${Versions.Hilt.HILT_CORE}")
+}
+
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
 }
