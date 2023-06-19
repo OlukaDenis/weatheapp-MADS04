@@ -1,4 +1,11 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    dependencies {
+        classpath( "com.google.dagger:hilt-android-gradle-plugin:${Versions.Hilt.HILT_CORE}")
+//        classpath(Dependencies.Hilt.CLASSPATH)
+    }
+}
+
 plugins {
     id("com.android.application") version "7.3.0" apply false
     id("com.android.library") version "7.3.0" apply false
