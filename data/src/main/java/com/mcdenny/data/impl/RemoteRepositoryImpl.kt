@@ -14,14 +14,18 @@ class RemoteRepositoryImpl @Inject constructor(
     override suspend fun fetchLocationWeather(query: HashMap<String, Any>): WeatherDomainModel {
         return try {
             val response = service.fetchLocationWeather(query)
-//            remoteUserMapper.mapToDomain(response)
             weatherRemoteMapper.toDomain(response)
         } catch (throwable: Throwable) {
             throw throwable
         }
     }
 
-    override suspend fun fetchWeeklyWeatherForecast(query: HashMap<String, Any>): List<WeatherDomainModel> {
-        TODO("Not yet implemented")
+    override suspend fun fetchDailyWeatherForecast(query: HashMap<String, Any>): List<WeatherDomainModel> {
+        return try {
+            val response = service.fetchDailyWeather(query).list
+            response.map { weatherRemoteMapper.toDomain(it) }
+        } catch (throwable: Throwable) {
+            throw throwable
+        }
     }
 }

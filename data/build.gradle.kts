@@ -63,6 +63,8 @@ dependencies {
     implementation("androidx.room:room-runtime:${Versions.Room.CORE_KTX}")
     kapt("androidx.room:room-compiler:${Versions.Room.CORE_KTX}")
 
+    implementation("com.jakewharton.timber:timber:${Versions.Util.TIMBER}")
+
     implementation(project(":domain"))
 }
 

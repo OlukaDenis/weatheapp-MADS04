@@ -1,6 +1,7 @@
 object Versions {
 
     const val BASE_URL = "https://api.openweathermap.org/data/2.5/"
+    const val APP_ID = "269c433647c44e7f08da7c96212b5f57"
 
     object Network {
         const val RETROFIT = "2.9.0"
@@ -42,5 +43,9 @@ object Versions {
 
     object Room {
         const val CORE_KTX = "2.5.1"
+    }
+
+    object Util {
+        const val TIMBER = "5.0.1"
     }
 }

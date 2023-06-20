@@ -1,5 +1,6 @@
 package com.mcdenny.data.remote.services
 
+import com.mcdenny.data.remote.models.WeatherListRemoteResponse
 import com.mcdenny.data.remote.models.weather.WeatherRemoteModel
 import com.mcdenny.domain.models.weather.WeatherDomainModel
 import retrofit2.http.GET
@@ -9,4 +10,7 @@ interface ApiService {
 
     @GET("weather")
     suspend fun fetchLocationWeather(@QueryMap query: HashMap<String, Any>): WeatherRemoteModel
+
+    @GET("forecast")
+    suspend fun fetchDailyWeather(@QueryMap query: HashMap<String, Any>): WeatherListRemoteResponse
 }

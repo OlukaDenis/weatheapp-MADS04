@@ -3,11 +3,12 @@ package com.mcdenny.nssfweather
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
-import com.mcdenny.domain.models.weather.WeatherInfoDomainModel
 import com.mcdenny.nssfweather.databinding.ActivityMainBinding
 import com.mcdenny.nssfweather.models.WeatherUiModel
 import com.mcdenny.nssfweather.ui.MainViewModel
+import com.mcdenny.nssfweather.ui.adapters.WeatherListAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
@@ -22,7 +23,22 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         viewModel.getLocationWeather()
+        viewModel.getDailyWeatherForecast()
+
+        setUpUI()
         observeCurrentWeather()
+    }
+
+    private fun setUpUI() {
+        with(binding) {
+            val weatherAdapter = WeatherListAdapter()
+            rvForecast.apply {
+                adapter = weatherAdapter
+                layoutManager = LinearLayoutManager(this@MainActivity)
+            }
+
+            observeDailyWeather(weatherAdapter)
+        }
     }
 
     private fun observeCurrentWeather() {
@@ -33,8 +49,24 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 is MainViewModel.CurrentWeatherState.Success -> {
-                    Timber.d("Current weather: %s", it.data)
                     populateData(it.data)
+                }
+
+                else -> {}
+            }
+        }
+    }
+
+    private fun observeDailyWeather(adapter: WeatherListAdapter) {
+        viewModel.weatherForecastState.observe(this) {
+            when (it) {
+                is MainViewModel.DailyWeatherState.Error -> {
+                    Timber.d("Error: %s", it.message)
+                }
+
+                is MainViewModel.DailyWeatherState.Success -> {
+                    Timber.d("Daily list: %s", it.data)
+                    adapter.submitList(it.data)
                 }
 
                 else -> {}
@@ -44,6 +76,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun populateData(data: WeatherUiModel) {
         with(binding) {
+
+            mtvLocation.text = data.locationName
 
             data.condition?.let { condition ->
                 root.setBackgroundColor(condition.backgroundColor)
@@ -55,7 +89,15 @@ class MainActivity : AppCompatActivity() {
                 mtvCurrentCondition.text = condition.name
             }
 
-            mtvCurrentTemp.text = data.temperature.current
+            data.temperature.let {
+                mtvCurrentTemp.text = it.current
+
+                with(layoutInfo) {
+                    mtvCurrentTemp.text = it.current
+                    mtvMaxTemp.text = it.max
+                    mtvMinTemp.text = it.min
+                }
+            }
 
         }
     }
