@@ -9,7 +9,7 @@ object Versions {
 
     object Kotlin {
         const val CORE = "1.4.3"
-        const val COROUTINES = "1.5.0"
+        const val COROUTINES = "1.6.4"
     }
 
     object Hilt {

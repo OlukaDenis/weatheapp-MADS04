@@ -1,6 +1,6 @@
 package com.mcdenny.domain.models.weather
 
-data class MainDomainModel(
+data class WeatherMainDomainModel(
     val feels_like: Double,
     val grnd_level: Int,
     val humidity: Int,

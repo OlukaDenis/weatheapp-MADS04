@@ -59,7 +59,10 @@ dependencies {
 //    androidTestImplementation("androidx.test.ext:junit:${Versions.Test.EXT_JUNIT}")
 //    androidTestImplementation("androidx.test.espresso:espresso-core:${Versions.Test.ESPRESSO}")
 
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.Kotlin.COROUTINES}")
+
+    implementation("com.jakewharton.timber:timber:5.0.1")
+    implementation("io.coil-kt:coil-compose:2.4.0")
 
     implementation("com.google.dagger:hilt-android:${Versions.Hilt.HILT_CORE}")
     kapt("com.google.dagger:hilt-android-compiler:${Versions.Hilt.HILT_CORE}")
