@@ -39,4 +39,8 @@ object Versions {
         const val EXT_JUNIT = "1.1.5"
         const val ESPRESSO = "3.5.1"
     }
+
+    object Room {
+        const val CORE_KTX = "2.5.1"
+    }
 }

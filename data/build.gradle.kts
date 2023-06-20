@@ -60,6 +60,9 @@ dependencies {
     implementation("com.google.dagger:hilt-android:${Versions.Hilt.HILT_CORE}")
     kapt("com.google.dagger:hilt-android-compiler:${Versions.Hilt.HILT_CORE}")
 
+    implementation("androidx.room:room-runtime:${Versions.Room.CORE_KTX}")
+    kapt("androidx.room:room-compiler:${Versions.Room.CORE_KTX}")
+
     implementation(project(":domain"))
 }
 
