@@ -8,6 +8,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
+import com.google.android.libraries.places.api.Places
 import com.mcdenny.nssfweather.databinding.ActivityMainBinding
 import com.mcdenny.nssfweather.models.WeatherUiModel
 import com.mcdenny.nssfweather.ui.MainViewModel
@@ -32,6 +33,10 @@ class MainActivity : AppCompatActivity() {
         ) as NavHostFragment
         navController = navHostFragment.findNavController()
         navController.addOnDestinationChangedListener(listener)
+
+        if(!Places.isInitialized()) {
+            Places.initialize(this, BuildConfig.PLACES_KEY)
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
