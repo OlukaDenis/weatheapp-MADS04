@@ -3,6 +3,9 @@ package com.mcdenny.nssfweather
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
 import com.mcdenny.nssfweather.databinding.ActivityMainBinding
@@ -17,88 +20,28 @@ class MainActivity : AppCompatActivity() {
 
     private val viewModel: MainViewModel by viewModels()
     private lateinit var binding: ActivityMainBinding
+    private lateinit var navController: NavController
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        viewModel.getLocationWeather()
-        viewModel.getDailyWeatherForecast()
-
-        setUpUI()
-        observeCurrentWeather()
+        val navHostFragment = supportFragmentManager.findFragmentById(
+            R.id.nav_host_fragment_content_main
+        ) as NavHostFragment
+        navController = navHostFragment.findNavController()
+        navController.addOnDestinationChangedListener(listener)
     }
 
-    private fun setUpUI() {
-        with(binding) {
-            val weatherAdapter = WeatherListAdapter()
-            rvForecast.apply {
-                adapter = weatherAdapter
-                layoutManager = LinearLayoutManager(this@MainActivity)
-            }
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp() || super.onSupportNavigateUp()
+    }
 
-            observeDailyWeather(weatherAdapter)
+    private val  listener = NavController.OnDestinationChangedListener {_, destination, _ ->
+        when(destination.id) {
         }
     }
 
-    private fun observeCurrentWeather() {
-        viewModel.currentWeatherState.observe(this) {
-            when (it) {
-                is MainViewModel.CurrentWeatherState.Error -> {
-                    Timber.d("Error: %s", it.message)
-                }
 
-                is MainViewModel.CurrentWeatherState.Success -> {
-                    populateData(it.data)
-                }
-
-                else -> {}
-            }
-        }
-    }
-
-    private fun observeDailyWeather(adapter: WeatherListAdapter) {
-        viewModel.weatherForecastState.observe(this) {
-            when (it) {
-                is MainViewModel.DailyWeatherState.Error -> {
-                    Timber.d("Error: %s", it.message)
-                }
-
-                is MainViewModel.DailyWeatherState.Success -> {
-                    Timber.d("Daily list: %s", it.data)
-                    adapter.submitList(it.data)
-                }
-
-                else -> {}
-            }
-        }
-    }
-
-    private fun populateData(data: WeatherUiModel) {
-        with(binding) {
-
-            mtvLocation.text = data.locationName
-
-            data.condition?.let { condition ->
-                root.setBackgroundColor(condition.backgroundColor)
-                civWeatherCondition.load(condition.image) {
-                    crossfade(true)
-                    placeholder(R.drawable.forest_sunny)
-                    error(R.drawable.forest_sunny)
-                }
-                mtvCurrentCondition.text = condition.name
-            }
-
-            data.temperature.let {
-                mtvCurrentTemp.text = it.current
-
-                with(layoutInfo) {
-                    mtvCurrentTemp.text = it.current
-                    mtvMaxTemp.text = it.max
-                    mtvMinTemp.text = it.min
-                }
-            }
-
-        }
-    }
 }

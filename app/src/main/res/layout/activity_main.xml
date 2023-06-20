@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,81 +9,16 @@
     tools:background="@color/sunny"
     tools:context=".MainActivity">
 
-   <androidx.constraintlayout.widget.ConstraintLayout
-       android:layout_width="match_parent"
-       android:layout_height="@dimen/spacing_300">
-
-       <androidx.appcompat.widget.AppCompatImageView
-           android:id="@+id/civWeatherCondition"
-           android:layout_width="match_parent"
-           android:layout_height="match_parent"
-           android:scaleType="centerCrop"
-           tools:src="@drawable/forest_sunny"/>
-
-       <com.google.android.material.textview.MaterialTextView
-           android:id="@+id/mtvLocation"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:gravity="center"
-           android:layout_marginTop="@dimen/spacing_16"
-           android:textColor="?colorOnPrimary"
-           android:textSize="@dimen/font_18"
-           tools:text="kampala"
-           app:layout_constraintStart_toStartOf="parent"
-           app:layout_constraintEnd_toEndOf="parent"
-           app:layout_constraintTop_toTopOf="parent"/>
-
-       <LinearLayout
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:gravity="center"
-           android:orientation="vertical"
-           app:layout_constraintStart_toStartOf="parent"
-           app:layout_constraintEnd_toEndOf="parent"
-           app:layout_constraintTop_toTopOf="parent"
-           app:layout_constraintBottom_toBottomOf="parent">
-
-           <com.google.android.material.textview.MaterialTextView
-               android:id="@+id/mtvCurrentTemp"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:gravity="center"
-               android:textColor="?colorOnPrimary"
-               android:textSize="@dimen/font_40"
-               tools:text="30" />
-
-           <com.google.android.material.textview.MaterialTextView
-               android:id="@+id/mtvCurrentCondition"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:gravity="center"
-               app:textAllCaps="true"
-               android:layout_marginTop="@dimen/spacing_4"
-               android:textColor="?colorOnPrimary"
-               android:textSize="@dimen/font_20"
-               android:text="@string/current" />
-       </LinearLayout>
-
-   </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <include
-        android:id="@+id/layoutInfo"
-        layout="@layout/layout_current_weather_info_view" />
-
-    <View
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/nav_host_fragment_content_main"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginVertical="@dimen/spacing_8"
-        android:background="?colorOnPrimary" />
+        android:layout_height="match_parent"
+        app:defaultNavHost="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navGraph="@navigation/main_nav" />
 
-   <androidx.core.widget.NestedScrollView
-       android:layout_width="match_parent"
-       android:layout_height="match_parent">
-
-       <androidx.recyclerview.widget.RecyclerView
-           android:id="@+id/rvForecast"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           tools:listitem="@layout/layout_daily_weather_item" />
-   </androidx.core.widget.NestedScrollView>
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

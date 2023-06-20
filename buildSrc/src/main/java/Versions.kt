@@ -2,6 +2,7 @@ object Versions {
 
     const val BASE_URL = "https://api.openweathermap.org/data/2.5/"
     const val APP_ID = "269c433647c44e7f08da7c96212b5f57"
+    const val MAPS_KEY = "AIzaSyAxrA-8OuOznztj84IDzUTIup3h0oSx7XU"
 
     object Network {
         const val RETROFIT = "2.9.0"
@@ -19,9 +20,9 @@ object Versions {
 
     object AndroidX {
         const val APP_COMPAT = "1.6.1"
-        const val CORE_KTX = "1.10.1"
+        const val CORE_KTX = "1.8.0"
         const val FRAGMENT_KTX = "1.5.4"
-        const val NAVIGATION = "2.5."
+        const val NAVIGATION = "2.5.3"
         const val ACTIVITY_KTX = "1.6.1"
         const val MATERIAL = "1.9.0"
         const val LIFECYCLE_KTX = "2.5.1"

@@ -3,7 +3,6 @@ package com.mcdenny.nssfweather.mappers
 import android.annotation.SuppressLint
 import android.os.Build
 import androidx.annotation.RequiresApi
-import androidx.compose.ui.text.capitalize
 import com.mcdenny.domain.models.weather.WeatherDomainModel
 import com.mcdenny.nssfweather.models.WeatherUiModel
 import java.lang.Exception
