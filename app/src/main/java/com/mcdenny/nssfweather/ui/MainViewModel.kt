@@ -4,9 +4,11 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mcdenny.domain.models.Resource
+import com.mcdenny.domain.models.weather.WeatherDomainModel
 import com.mcdenny.domain.usecases.FetchLocationWeatherUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.InternalCoroutinesApi
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -18,6 +20,9 @@ class MainViewModel @Inject constructor(
     companion object {
         const val TAG = "MainViewModel"
     }
+
+    private var _currentWeatherState = MutableStateFlow<CurrentWeatherState>(CurrentWeatherState.Initial)
+    val currentWeatherState get() = _currentWeatherState
 
     fun getLocationWeather() {
         viewModelScope.launch {
@@ -39,9 +44,13 @@ class MainViewModel @Inject constructor(
                     }
                 }
             }
-
-
         }
     }
 
+    sealed class CurrentWeatherState {
+        object Initial: CurrentWeatherState()
+        object Loading: CurrentWeatherState()
+        data class Error(val message: String): CurrentWeatherState()
+        data class Success(val data: WeatherDomainModel): CurrentWeatherState()
+    }
 }

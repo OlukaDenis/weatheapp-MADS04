@@ -53,6 +53,7 @@ dependencies {
     implementation("androidx.activity:activity-ktx:${Versions.AndroidX.ACTIVITY_KTX}")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.AndroidX.LIFECYCLE_KTX}")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:${Versions.AndroidX.LIFECYCLE_KTX}")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:${Versions.AndroidX.LIFECYCLE_KTX}")
 
 //    testImplementation("junit:junit:${Versions.Test.JUNIT}")
 //    androidTestImplementation("androidx.test.ext:junit:${Versions.Test.EXT_JUNIT}")

@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">NSSF Weather</string>
+    <string name="min">min</string>
+    <string name="max">max</string>
+    <string name="current">Current</string>
 </resources>
