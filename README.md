@@ -3,8 +3,10 @@
 The purpose of this assessment is to build a weather application that displays weather information of the current device location and other places.
 
 ## Screenshots ##
+![rainy](https://github.com/OlukaDenis/weatheapp-MADS04/assets/37341054/0a7120c3-6d08-4283-a48f-6ab6c1d45238)
+![cloudy](https://github.com/OlukaDenis/weatheapp-MADS04/assets/37341054/c365e14c-7d1c-466b-a500-cc741a968a59)
 
-![screenshots](https://user-images.githubusercontent.com/37341054/160276067-59dc4194-0cab-4ea0-8070-e816446048e1.jpg)
+
 
 ## Features
 - View current device location weather information
