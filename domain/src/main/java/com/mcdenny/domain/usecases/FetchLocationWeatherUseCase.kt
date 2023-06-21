@@ -1,5 +1,6 @@
 package com.mcdenny.domain.usecases
 
+import com.mcdenny.domain.BuildConfig
 import com.mcdenny.domain.base.BaseFlowUseCase
 import com.mcdenny.domain.dispacher.AppDispatcher
 import com.mcdenny.domain.models.Resource
@@ -30,7 +31,7 @@ class FetchLocationWeatherUseCase @Inject constructor(
                     this["lat"] = it.latitude
                     this["lon"] = it.longitude
                     this["units"] = "metric"
-                    this["appid"] = "269c433647c44e7f08da7c96212b5f57"
+                    this["appid"] = BuildConfig.APP_ID
                 }
 
                 val weather = remote.fetchLocationWeather(request)

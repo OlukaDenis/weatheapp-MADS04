@@ -39,8 +39,13 @@ android {
 
 dependencies {
 
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.Kotlin.COROUTINES}")
     implementation("javax.inject:javax.inject:1")
+
+    testImplementation(Dependencies.Test.TRUTHY)
+    testImplementation(Dependencies.Test.JUNIT)
+    testImplementation(Dependencies.Test.MOCKK)
+    testImplementation(Dependencies.Test.JUNIT_EXT)
 
     implementation("com.jakewharton.timber:timber:${Versions.Util.TIMBER}")
 }

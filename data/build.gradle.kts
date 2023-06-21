@@ -14,7 +14,7 @@ android {
         targetSdk = 33
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-//        consumerProguardFiles("consumer-rules.pro")
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -42,14 +42,12 @@ android {
 }
 
 dependencies {
-
-//    implementation("androidx.core:core-ktx:1.8.0")
-//    implementation("androidx.appcompat:appcompat:1.6.1")
-//    implementation("com.google.android.material:material:1.9.0")
-
-    testImplementation("junit:junit:${Versions.Test.JUNIT}")
-    androidTestImplementation("androidx.test.ext:junit:${Versions.Test.EXT_JUNIT}")
     androidTestImplementation("androidx.test.espresso:espresso-core:${Versions.Test.ESPRESSO}")
+
+    testImplementation(Dependencies.Test.TRUTHY)
+    testImplementation(Dependencies.Test.JUNIT)
+    testImplementation(Dependencies.Test.MOCKK)
+    testImplementation(Dependencies.Test.JUNIT_EXT)
 
     implementation("com.squareup.retrofit2:retrofit:${Versions.Network.RETROFIT}")
     implementation("com.squareup.okhttp3:okhttp:${Versions.Network.OKHTTP}")
