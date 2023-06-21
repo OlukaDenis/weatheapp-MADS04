@@ -3,6 +3,20 @@
     <style name="Base.Theme.NSSFWeather" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/cloudy</item>
+        <item name="colorPrimaryVariant">@color/cloudy</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/cloudy</item>
+        <item name="colorSecondaryVariant">@color/cloudy</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+
+        <item name="android:textColorPrimary">@color/black</item>
+        <item name="android:textColor">@color/black</item>
+
+        <item name="android:windowBackground">@color/white</item>
     </style>
 
     <style name="Theme.NSSFWeather" parent="Base.Theme.NSSFWeather" />

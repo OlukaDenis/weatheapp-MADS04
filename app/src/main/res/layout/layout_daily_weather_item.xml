@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:paddingVertical="@dimen/spacing_14"
+    android:paddingHorizontal="@dimen/spacing_16"
+    android:orientation="horizontal">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/mtvDay"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="start"
+            android:textColor="?colorOnPrimary"
+            android:textSize="@dimen/font_16"
+            tools:text="Monday" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/civWeatherIcon"
+            android:layout_width="@dimen/spacing_20"
+            android:layout_height="@dimen/spacing_20"
+            tools:srcCompat="@drawable/clear"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/mtvTemperature"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="end"
+            tools:text="20"
+            android:textSize="@dimen/font_16"
+            android:textColor="?colorOnPrimary" />
+
+</LinearLayout>
