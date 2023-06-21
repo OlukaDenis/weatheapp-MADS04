@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:background="@color/sunny"
+    android:background="@color/rainy"
     tools:context=".MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/spacing_300">
+        android:layout_height="@dimen/spacing_400">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/civWeatherCondition"
@@ -42,6 +42,14 @@
             android:layout_marginTop="@dimen/spacing_16"
             app:srcCompat="@drawable/baseline_search_24"/>
 
+        <ProgressBar
+            android:id="@+id/pbLoading"
+            android:layout_width="@dimen/font_40"
+            android:layout_height="@dimen/font_40"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -70,7 +78,7 @@
                 android:layout_marginTop="@dimen/spacing_4"
                 android:textColor="?colorOnPrimary"
                 android:textSize="@dimen/font_20"
-                android:text="@string/current" />
+                tools:text="@string/current" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -90,6 +98,7 @@
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:background="@color/cloudy"
             android:id="@+id/rvForecast"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

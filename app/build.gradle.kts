@@ -77,6 +77,7 @@ dependencies {
     kapt("com.google.dagger:hilt-android-compiler:${Versions.Hilt.HILT_CORE}")
 
     implementation("com.google.android.libraries.places:places:3.1.0")
+    implementation("com.google.android.gms:play-services-location:21.0.1")
 }
 
 // Allow references to generated code

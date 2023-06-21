@@ -5,4 +5,5 @@
     <string name="current">Current</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="please_allow_the_location_permission_for_the_to_work_properly">Please allow the location permission for the to work properly</string>
 </resources>

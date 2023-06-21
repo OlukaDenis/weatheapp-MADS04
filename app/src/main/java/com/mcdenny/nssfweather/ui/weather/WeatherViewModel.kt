@@ -20,9 +20,6 @@ class WeatherViewModel @Inject constructor(
     private val weatherUiModelMapper: WeatherUiModelMapper
 ) : ViewModel() {
 
-    var longitude: Double? = null
-    var latitude: Double? = null
-
     private val _currentWeatherState =
         MutableStateFlow<CurrentWeatherState>(CurrentWeatherState.Initial)
     val currentWeatherState get() = _currentWeatherState.asLiveData()
@@ -31,53 +28,49 @@ class WeatherViewModel @Inject constructor(
         MutableStateFlow<DailyWeatherState>(DailyWeatherState.Initial)
     val weatherForecastState get() = _weatherForecastState.asLiveData()
 
-    fun getLocationWeather() {
+    fun getLocationWeather(latitude: Double, longitude: Double) {
         viewModelScope.launch {
-            if (latitude != null && longitude != null) {
-                val param = FetchLocationWeatherUseCase.Param(
-                    latitude = latitude!!,
-                    longitude = longitude!!
-                )
+            val param = FetchLocationWeatherUseCase.Param(
+                latitude = latitude,
+                longitude = longitude
+            )
 
-                fetchLocationWeatherUseCase(param).collect {
-                    when (it) {
-                        is Resource.Loading -> _currentWeatherState.value =
-                            CurrentWeatherState.Loading
+            fetchLocationWeatherUseCase(param).collect {
+                when (it) {
+                    is Resource.Loading -> _currentWeatherState.value =
+                        CurrentWeatherState.Loading
 
-                        is Resource.Error -> _currentWeatherState.value =
-                            CurrentWeatherState.Error(message = it.exception)
+                    is Resource.Error -> _currentWeatherState.value =
+                        CurrentWeatherState.Error(message = it.exception)
 
-                        is Resource.Success -> _currentWeatherState.value =
-                            CurrentWeatherState.Success(data = weatherUiModelMapper.toUi(it.data))
-                    }
+                    is Resource.Success -> _currentWeatherState.value =
+                        CurrentWeatherState.Success(data = weatherUiModelMapper.toUi(it.data))
                 }
             }
         }
     }
 
-    fun getDailyWeatherForecast() {
-        if (latitude != null && longitude != null) {
-            viewModelScope.launch {
-                val param = FetchDailyWeatherUseCase.Param(
-                    latitude = latitude!!,
-                    longitude = longitude!!
-                )
+    fun getDailyWeatherForecast(latitude: Double, longitude: Double) {
+        viewModelScope.launch {
+            val param = FetchDailyWeatherUseCase.Param(
+                latitude = latitude,
+                longitude = longitude
+            )
 
-                fetchDailyWeatherUseCase(param).collect {
-                    when (it) {
-                        is Resource.Loading -> _weatherForecastState.value =
-                            DailyWeatherState.Loading
+            fetchDailyWeatherUseCase(param).collect {
+                when (it) {
+                    is Resource.Loading -> _weatherForecastState.value =
+                        DailyWeatherState.Loading
 
-                        is Resource.Error -> _weatherForecastState.value =
-                            DailyWeatherState.Error(message = it.exception)
+                    is Resource.Error -> _weatherForecastState.value =
+                        DailyWeatherState.Error(message = it.exception)
 
-                        is Resource.Success -> _weatherForecastState.value =
-                            DailyWeatherState.Success(data = it.data.map { m ->
-                                weatherUiModelMapper.toUi(
-                                    m
-                                )
-                            })
-                    }
+                    is Resource.Success -> _weatherForecastState.value =
+                        DailyWeatherState.Success(data = it.data.map { m ->
+                            weatherUiModelMapper.toUi(
+                                m
+                            )
+                        })
                 }
             }
         }
